@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="motorcycle_record_001" model="motorcycle.registry">
+		<field name="registry_number">001</field>
+		<field name="vin">ABCDEFGHIJKLMN</field>
+		<field name="first_name">Thomas</field>
+		<field name="last_name">Jerry</field>
+		<field name="current_milage">2000</field>
+	</record>
+	<record id="motorcycle_record_002" model="motorcycle.registry">
+		<field name="registry_number">002</field>
+		<field name="vin">ilovepineapple</field>
+		<field name="first_name">John</field>
+		<field name="last_name">Wick</field>
+		<field name="current_milage">250</field>
+	</record>
+	<record id="motorcycle_record_003" model="motorcycle.registry">
+		<field name="registry_number">003</field>
+		<field name="vin">horsesarecute</field>
+		<field name="first_name">Jennifer</field>
+		<field name="last_name">Lopez</field>
+		<field name="current_milage">950</field>
+	</record>
+</odoo>

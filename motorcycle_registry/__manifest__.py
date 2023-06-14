@@ -9,7 +9,7 @@
     'category': 'Kawiil',
 	'depends': ['base'],
     'data': [],
-    'demo': [],
+    'demo': ['demo/motorcycle_registry_demo.xml'],
     'application': True,
     'license': 'OPL-1'
 }
