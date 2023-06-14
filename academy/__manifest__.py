@@ -9,7 +9,7 @@
         """,
     'license': 'OPL-1',
     'author': 'mizh-odoo',
-    'website': 'www.odoo.com',
+    'website': 'https://www.github.com/mizh-odoo/training-odoo',
     'category': 'Kawiil',
     'depends': ['base'],
     'data': [],

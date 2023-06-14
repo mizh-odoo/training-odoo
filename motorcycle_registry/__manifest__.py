@@ -5,7 +5,7 @@
 	====================
 	This Module is used to keep track of the Motorcycle Registration and Ownership of each motorcycled of the brand.""",
 	'author': 'mizh-odoo',
-	'website': 'https://www.github.com/mizh-odoo/training-custom-modules',
+	'website': 'https://www.github.com/mizh-odoo/training-odoo',
     'category': 'Kawiil',
 	'depends': ['base'],
     'data': [],
