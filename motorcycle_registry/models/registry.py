@@ -35,14 +35,6 @@ class Registry(models.Model):
             if vals.get('registry_number', ('MRN0001')) == ('MRN0001'):
                 vals['registry_number'] = self.env['ir.sequence'].next_by_code('registry.number')
         return super().create(vals_list)
-
-    @api.model
-    def create(self, vals):
-        print("hello")
-        if vals.get('registry_number', ('MRN0001')) == ('MRN0001'):
-            vals['registry_number'] = self.env['ir.sequence'].next_by_code(
-                'registry.number')
-        return super().create(vals)
     
     @api.constrains('vin')
     def _check_vin_number(self):
@@ -77,15 +69,24 @@ class Registry(models.Model):
     @api.depends('vin')
     def _get_brand(self):
         for mrn in self:
-            mrn.brand = mrn.vin[0:2]
+            if (mrn.vin):
+                mrn.brand = mrn.vin[0:2]
+            else:
+                mrn.brand = ""
     @api.depends('vin')
     def _get_make(self):
         for mrn in self:
-            mrn.make = mrn.vin[2:4]
+            if (mrn.vin):
+                mrn.make = mrn.vin[2:4]
+            else:
+                mrn.make = ""
     @api.depends('vin')
     def _get_year(self):
         for mrn in self:
-            mrn.year = mrn.vin[4:6]
+            if (mrn.vin):
+                mrn.year = mrn.vin[4:6]
+            else:
+                mrn.year = ""
 
     @api.depends('owner')
     def _get_owner_email(self):
