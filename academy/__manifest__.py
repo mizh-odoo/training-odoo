@@ -18,6 +18,7 @@
         'security/academy_security.xml',
         
 		'views/academy_menuitems.xml',
+        'views/course_view.xml',
 	],
     'demo': ['demo/course_demo.xml'],
     'application': True,
