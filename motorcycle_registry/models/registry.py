@@ -14,7 +14,7 @@ class Registry(models.Model):
     picture = fields.Image(string ="Picture")
     current_milage = fields.Float(string="Current Milage")
     license_plate = fields.Char(string="License Plate")
-    certificate_title = fields.Boolean(string="Certificate Title")
+    certificate_title = fields.Image(string="Certificate Title")
     register_date = fields.Date(string="Registry Date")
     
     @api.model_create_multi
@@ -24,8 +24,9 @@ class Registry(models.Model):
                 vals['registry_number'] = self.env['ir.sequence'].next_by_code('registry.number')
         return super().create(vals_list)
 
-    @api.model_create_single
+    @api.model
     def create(self, vals):
+        print("hello")
         if vals.get('registry_number', ('MRN0001')) == ('MRN0001'):
             vals['registry_number'] = self.env['ir.sequence'].next_by_code(
                 'registry.number')
@@ -47,14 +48,14 @@ class Registry(models.Model):
         for mrn in self:
             similar_vin = self.env['motorcycle.registry'].search_read(
                 [('vin', '=', mrn.vin)], ['registry_number'])
-            if (len(similar_vin) > 0):
-                raise ValidationError("It seems this VIN exists for: " + str(similar_vin))
+            if (len(similar_vin) > 1):
+                raise ValidationError("It seems this VIN exists for: " + str(similar_vin[1]['registry_number']))
     
     @api.constrains('license_plate')
     def _check_license_plate(self):
         for mrn in self:
             if (mrn.license_plate):
-                if not re.match("/^[A-Z]{1,4}\d{1,3}[A-Z]{0,2}$/", mrn.license_plate):
+                if not re.match("^[A-Z]{1,4}\d{1,3}[A-Z]{0,2}$", mrn.license_plate):
                     raise ValidationError("""The license plate does not follow the following pattern:
                                             1 - 4 Capital Letters
                                             1 - 3 Digits

@@ -11,24 +11,26 @@
 				<sheet>
 					<h1>
 						<field name="registry_number" />
+						<field name="picture" class="oe_avatar" widget="image" />
 					</h1>
-					<field name="picture" model="image"/>
 					<group>
-						<separator string="Motorcycle Information" />
-						<field name="register_date" />
-						<field name="vin" />
-						<field name="current_milage" />
-						<field name="license_plate" />
-						
-					</group>
-					<group>
-						<separator string="Owner Information" />
-			
-						<field name="first_name" />
-						<field name="last_name" />
+						<group>
+							<separator string="Motorcycle Information" />
+							<field name="register_date" />
+							<field name="vin" />
+							<field name="current_milage" />
+							<field name="license_plate" />
+
+						</group>
+						<group>
+							<separator string="Owner Information" />
+
+							<field name="first_name" />
+							<field name="last_name" />
+						</group>
 					</group>
 					<notebook>
-						<page string="Certificate Title">
+						<page string="Related Documents">
 							<field name="certificate_title" />
 						</page>
 					</notebook>
