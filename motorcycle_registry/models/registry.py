@@ -9,14 +9,26 @@ class Registry(models.Model):
     registry_number = fields.Char(string="Registry Number",
                                 default="MRN0001", copy=False, required=True, readonly=True)
     vin = fields.Char(string="VIN", required=True)
-    first_name = fields.Char(string="First Name", required=True)
-    last_name = fields.Char(string="Last Name", required = True)
     picture = fields.Image(string ="Picture")
     current_milage = fields.Float(string="Current Milage")
     license_plate = fields.Char(string="License Plate")
     certificate_title = fields.Image(string="Certificate Title")
     register_date = fields.Date(string="Registry Date")
+
+    brand = fields.Char(string="Brand", compute="_get_brand", readonly=True)
+    make = fields.Char(string="Make", compute="_get_make", readonly=True)
+    year = fields.Char(string="Year", compute="_get_year", readonly=True)
     
+    owner = fields.Many2one(string="Owner", comodel_name="res.partner",ondelete="restrict")
+
+    #test currently
+    # owner_phone = fields.Char(string="Owner Phone", compute="_get_owner_phone", readonly=True)
+    # owner_email = fields.Char(string="Owner Email", compute="_get_owner_email", readonly=True)
+
+
+    owner_phone = fields.Char(string="Owner Phone", compute="_get_owner_phone", readonly=True)
+    owner_email = fields.Char(string="Owner Email", compute="_get_owner_email", readonly=True)
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
@@ -61,3 +73,25 @@ class Registry(models.Model):
                                             1 - 3 Digits
                                             Optional 2 Capital Letters
                                         """)
+
+    @api.depends('vin')
+    def _get_brand(self):
+        for mrn in self:
+            mrn.brand = mrn.vin[0:2]
+    @api.depends('vin')
+    def _get_make(self):
+        for mrn in self:
+            mrn.make = mrn.vin[2:4]
+    @api.depends('vin')
+    def _get_year(self):
+        for mrn in self:
+            mrn.year = mrn.vin[4:6]
+
+    @api.depends('owner')
+    def _get_owner_email(self):
+        for mrn in self:
+            mrn.owner_email = mrn.owner.email
+    @api.depends('owner')
+    def _get_owner_phone(self):
+        for mrn in self:
+            mrn.owner_phone = mrn.owner.phone
