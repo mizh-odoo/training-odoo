@@ -17,6 +17,8 @@
         'security/ir.model.access.csv',
         'security/academy_security.xml',
         
+		'data/session_data.xml',
+        
 		'views/academy_menuitems.xml',
         'views/course_view.xml',
 	],

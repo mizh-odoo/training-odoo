@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 	<record id="motorcycle_registry_view_form" model="ir.ui.view">
-		<field name="name">motorcycle_registry.view.form</field>
+		<field name="name">registry.view.form</field>
 		<field name="model">motorcycle.registry</field>
 		<field name="arch" type="xml">
 			<form id="motorcycle_registry_form">
@@ -12,7 +12,7 @@
 					<h1>
 						<field name="registry_number" />
 					</h1>
-					<field name="picture" />
+					<field name="picture" model="image"/>
 					<group>
 						<separator string="Motorcycle Information" />
 						<field name="register_date" />
@@ -38,7 +38,7 @@
 	</record>
 
 	<record id="motorcycle_registry_view_list" model="ir.ui.view">
-		<field name="name">motorcycle_registry.view.list</field>
+		<field name="name">registry.view.list</field>
 		<field name="model">motorcycle.registry</field>
 		<field name="arch" type="xml">
 			<tree string="Motorcycle Registry List" default_order="registry_number desc">
@@ -52,7 +52,7 @@
 	</record>
 
 	<record id="motorcycle_registry_view_search" model="ir.ui.view">
-		<field name="name">motorcycle_registry.view.search</field>
+		<field name="name">registry.view.search</field>
 		<field name="model">motorcycle.registry</field>
 		<field name="arch" type="xml">
 			<search string="Motorcycle Registry Search">
