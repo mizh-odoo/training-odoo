@@ -26,8 +26,8 @@ class Registry(models.Model):
     # owner_email = fields.Char(string="Owner Email", compute="_get_owner_email", readonly=True)
 
 
-    owner_phone = fields.Char(string="Owner Phone", compute="_get_owner_phone", readonly=True)
-    owner_email = fields.Char(string="Owner Email", compute="_get_owner_email", readonly=True)
+    owner_phone = fields.Char(string="Owner Phone", related="owner.phone", readonly=True)
+    owner_email = fields.Char(string="Owner Email", related="owner.email", readonly=True)
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -87,12 +87,3 @@ class Registry(models.Model):
                 mrn.year = mrn.vin[4:6]
             else:
                 mrn.year = ""
-
-    @api.depends('owner')
-    def _get_owner_email(self):
-        for mrn in self:
-            mrn.owner_email = mrn.owner.email
-    @api.depends('owner')
-    def _get_owner_phone(self):
-        for mrn in self:
-            mrn.owner_phone = mrn.owner.phone

@@ -11,7 +11,7 @@
     'author': 'mizh-odoo',
     'website': 'https://www.github.com/mizh-odoo/training-odoo',
     'category': 'Kawiil',
-    'depends': ['base'],
+    'depends': ['base', 'sale'],
     'data': [
         'security/academy_groups.xml',
         'security/ir.model.access.csv',
